@@ -11,7 +11,7 @@ class VshElasticsearch1 < Formula
     sha256 big_sur: "e8a0ff9e463f14d857ea584bee4b0ade0799dd4131e7cd05782706df7a18ecb3"
   end
 
-  depends_on "homebrew/cask-versions/zulu8" => :cask
+  depends_on :cask => "homebrew/cask-versions/zulu8"
 
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
