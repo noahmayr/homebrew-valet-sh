@@ -57,11 +57,11 @@ class VshElasticsearch1 < Formula
 
     inreplace libexec/"bin/plugin",
               "CDPATH=\"\"",
-              "JAVA_HOME=\"$(/usr/libexec/java_home -v 1.8)\"\nCDPATH=\"\""
+              "JAVA_HOME=\"$(/usr/libexec/java_home -v 1.8 -F)\"\nCDPATH=\"\""
 
     inreplace libexec/"bin/elasticsearch",
               "CDPATH=\"\"",
-              "JAVA_HOME=\"$(/usr/libexec/java_home -v 1.8)\"\nCDPATH=\"\""
+              "JAVA_HOME=\"$(/usr/libexec/java_home -v 1.8 -F)\"\nCDPATH=\"\""
   end
 
   def post_install
