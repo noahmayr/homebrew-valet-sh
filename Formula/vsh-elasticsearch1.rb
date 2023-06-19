@@ -19,8 +19,8 @@ class VshElasticsearch1 < Formula
 
 
   def install
-    system "brew install --cask homebrew/cask-versions/zulu8"
-    
+    system "brew", "install" "--cask" "homebrew/cask-versions/zulu8"
+
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
     rm_f Dir["bin/*.exe"]
