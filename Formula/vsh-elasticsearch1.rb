@@ -26,7 +26,7 @@ class VshElasticsearch1 < Formula
   def install
     java_home = Hardware::CPU.arm? ? `/usr/libexec/java_home -v 1.8 -a arm64 -F 2>/dev/null || /usr/libexec/java_home -v 1.8 -F`.strip : "#{Formula['openjdk@8'].opt_libexec}/openjdk.jdk/Contents/Home"
     raise CannotInstallFormulaError.new("Java has to be installed for elasticsearch, plase run `brew install --cask homebrew/cask-versions/zulu8`") if java_home.empty?
-    puts "java_home:", java_home
+
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
     rm_f Dir["bin/*.exe"]
