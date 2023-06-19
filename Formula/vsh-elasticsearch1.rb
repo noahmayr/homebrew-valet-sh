@@ -26,6 +26,7 @@ class VshElasticsearch1 < Formula
   def install
     java_home = Hardware::CPU.arm? ? `/usr/libexec/java_home -v 1.8 -a arm64 -F 2>/dev/null || /usr/libexec/java_home -v 1.8 -F` : "#{Formula['openjdk@8'].opt_libexec}/openjdk.jdk/Contents/Home"
 
+    puts "java_home:", java_home
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
     rm_f Dir["bin/*.exe"]
