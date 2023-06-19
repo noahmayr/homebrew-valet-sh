@@ -11,6 +11,11 @@ class VshElasticsearch1 < Formula
     sha256 big_sur: "e8a0ff9e463f14d857ea584bee4b0ade0799dd4131e7cd05782706df7a18ecb3"
   end
 
+
+  on_intel do
+    depends_on "openjdk@8"
+  end
+
   #depends_on cask: "homebrew/cask-versions/zulu8"
 
   def cluster_name
@@ -19,7 +24,7 @@ class VshElasticsearch1 < Formula
 
 
   def install
-    system "#{HOMEBREW_PREFIX}/bin/brew", "install", "--cask", "homebrew/cask-versions/zulu8"
+    java_home = Hardware::CPU.arm? ? (system "/usr/libexec/java_home", "-v", "1.8", "-F") : "#{Formula['openjdk@8'].opt_libexec}/openjdk.jdk/Contents/Home"
 
     # Remove Windows files
     rm_f Dir["bin/*.bat"]
@@ -57,11 +62,11 @@ class VshElasticsearch1 < Formula
 
     inreplace libexec/"bin/plugin",
               "CDPATH=\"\"",
-              "JAVA_HOME=\"$(/usr/libexec/java_home -v 1.8 -F)\"\nCDPATH=\"\""
+              "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
 
     inreplace libexec/"bin/elasticsearch",
               "CDPATH=\"\"",
-              "JAVA_HOME=\"$(/usr/libexec/java_home -v 1.8 -F)\"\nCDPATH=\"\""
+              "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
   end
 
   def post_install
