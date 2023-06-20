@@ -58,14 +58,13 @@ class VshElasticsearch1 < Formula
     (etc/"#{name}").install Dir[libexec/"config/*"]
     (libexec/"config").rmtree
 
-    #inreplace libexec/"bin/plugin",
-    #          "CDPATH=\"\"",
-    #          "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
+    inreplace libexec/"bin/plugin",
+              "CDPATH=\"\"",
+              "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
 
-    #inreplace libexec/"bin/elasticsearch",
-    #          "CDPATH=\"\"",
-    #          "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
-    bin.env_script_all_files(libexec/"bin", Language::Java.java_home_env("1.8"))
+    inreplace libexec/"bin/elasticsearch",
+              "CDPATH=\"\"",
+              "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
   end
 
   def post_install
