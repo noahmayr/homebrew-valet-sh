@@ -11,12 +11,9 @@ class VshElasticsearch1 < Formula
     sha256 big_sur: "e8a0ff9e463f14d857ea584bee4b0ade0799dd4131e7cd05782706df7a18ecb3"
   end
 
-
   on_intel do
     depends_on "openjdk@8"
   end
-
-  #depends_on cask: "homebrew/cask-versions/zulu8"
 
   def cluster_name
     "elasticsearch_#{ENV["USER"]}"
@@ -61,13 +58,14 @@ class VshElasticsearch1 < Formula
     (etc/"#{name}").install Dir[libexec/"config/*"]
     (libexec/"config").rmtree
 
-    inreplace libexec/"bin/plugin",
-              "CDPATH=\"\"",
-              "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
+    #inreplace libexec/"bin/plugin",
+    #          "CDPATH=\"\"",
+    #          "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
 
-    inreplace libexec/"bin/elasticsearch",
-              "CDPATH=\"\"",
-              "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
+    #inreplace libexec/"bin/elasticsearch",
+    #          "CDPATH=\"\"",
+    #          "JAVA_HOME=\"#{java_home}\"\nCDPATH=\"\""
+    bin.env_script_all_files(libexec/"bin", Language::Java.java_home_env("1.8"))
   end
 
   def post_install
